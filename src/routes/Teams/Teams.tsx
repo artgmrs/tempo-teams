@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTeams } from "../../shared/store/slices/appSlice";
 import { RootState } from "../../shared/store/store";
-import Card from "../Card/Card";
 import * as TempoService from "../../shared/services/tempoService";
-import "./CardContainer.css"
+import { Link } from "react-router-dom";
+import Card from "../../components/Card/Card";
+import "./Teams.css";
 
-const CardContainer = () => {
+const Teams = () => {
     const teams = useSelector((state: RootState) => state.app.teams);
     const dispatch = useDispatch();
 
@@ -22,12 +23,15 @@ const CardContainer = () => {
     });
 
     return (
-        <div className="card-container">
-            {teams?.map((team) => (
-                <Card id={team.id} name={team.name} key={team.id} />
-            ))}
-        </div>
+        <>
+            <Link to="/users">Search users</Link>
+            <div className="card-container">
+                {teams?.map((team) => (
+                    <Card id={team.id} name={team.name} />
+                ))}
+            </div>
+        </>
     );
 };
 
-export default CardContainer;
+export default Teams;

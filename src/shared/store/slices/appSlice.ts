@@ -1,24 +1,29 @@
-import { createSlice, PayloadAction } from  "@reduxjs/toolkit"
-import Team from "../../types/team"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import TeamType from "../../types/teamType";
 
 export interface AppState {
-  teams: Team[],
+    teams: TeamType[];
+    currentTeam: TeamType | null;
 }
 
 const initialState: AppState = {
-  teams: [],
-}
+    teams: [],
+    currentTeam: null,
+};
 
 export const appSlice = createSlice({
-  name: "app",
-  initialState,
-  reducers: {
-    updateTeams: (state, action: PayloadAction<Team[]>) => {
-      state.teams = action.payload;
-    }
-  },
+    name: "app",
+    initialState,
+    reducers: {
+        updateTeams: (state, action: PayloadAction<TeamType[]>) => {
+            state.teams = action.payload;
+        },
+        setCurrentTeam: (state, action: PayloadAction<TeamType>) => {
+            state.currentTeam = action.payload;
+        },
+    },
 });
 
-export const { updateTeams } = appSlice.actions
+export const { updateTeams, setCurrentTeam } = appSlice.actions;
 
-export default appSlice.reducer
+export default appSlice.reducer;

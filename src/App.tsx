@@ -1,13 +1,21 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { updateTeams } from "./shared/store/slices/appSlice";
-import { RootState } from "./shared/store/store";
-import Card from "./components/Card/Card";
-import CardContainer from "./components/CardContainer/CardContainer";
+import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Team from "./routes/Team/Team";
+import Teams from "./routes/Teams/Teams";
+import { store } from "./shared/store/store";
 
 const App = () => {
-    return <CardContainer />
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Teams />} />
+                    <Route path="/team" element={<Team />} />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
+    );
 };
 
 export default App;

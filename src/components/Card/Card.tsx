@@ -1,12 +1,32 @@
 import React from "react";
-import "./Card.css"
+import "./Card.css";
+import * as TempoService from "shared/services/tempoService";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCurrentTeam } from "shared/store/slices/appSlice";
 
 const Card = ({ id, name }: { id: number; name: string }) => {
-    return (
-      <div className="card">
-        <span>{name}</span>
-      </div>
-    );
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleClick = async (id: number) => {
+    navigate("/team");
+    const team = await TempoService.getTeam(id);
+    dispatch(setCurrentTeam(team));
+  };
+
+  return (
+    <div className="card">
+      <button
+        type="button"
+        onClick={() => {
+          handleClick(id);
+        }}
+      >
+        {name}
+      </button>
+    </div>
+  );
 };
 
 export default Card;
