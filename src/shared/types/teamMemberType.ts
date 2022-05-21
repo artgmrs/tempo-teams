@@ -1,5 +1,5 @@
 interface TeamMemberType {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   displayName: string;

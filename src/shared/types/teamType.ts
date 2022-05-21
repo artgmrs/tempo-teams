@@ -1,10 +1,10 @@
 import TeamMemberType from "./teamMemberType";
 
 interface TeamType {
-  id: number;
+  id: string;
   name: string;
-  teamLeadId?: number;
-  teamMemberIds?: number[];
+  teamLeadId?: string;
+  teamMemberIds?: string[];
   teamMembers?: TeamMemberType[];
 }
 

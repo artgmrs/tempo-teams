@@ -15,7 +15,7 @@ export const getTeams = async () => {
   }
 };
 
-export const getTeam = async (teamId: number) => {
+export const getTeam = async (teamId: string) => {
   try {
     const response = await tempoApi.get(`/teams/${teamId}`);
     if (response.status === 200 && response.data) {
@@ -26,7 +26,7 @@ export const getTeam = async (teamId: number) => {
   }
 };
 
-export const getUsers = async (teamId: number) => {
+export const getUsers = async (teamId: string) => {
   try {
     const response = await tempoApi.get("/users");
     if (response.status === 200 && response.data) {
@@ -37,7 +37,7 @@ export const getUsers = async (teamId: number) => {
   }
 };
 
-export const getUser = async (userId: number) => {
+export const getUser = async (userId: string) => {
   try {
     const response = await tempoApi.get(`/users/${userId}`);
     if (response.status === 200 && response.data) {
