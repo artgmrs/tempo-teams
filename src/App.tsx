@@ -1,21 +1,21 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Team from "./routes/Team/Team";
-import Teams from "./routes/Teams/Teams";
+import TeamDetails from "routes/TeamDetails/TeamDetails";
+import TeamsOverview from "routes/TeamsOverview/TeamsOverview";
 import { store } from "./shared/store/store";
 
 const App = () => {
-    return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Teams />} />
-                    <Route path="/team" element={<Team />} />
-                </Routes>
-            </BrowserRouter>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<TeamsOverview />} />
+          <Route path="/teams/:id" element={<TeamDetails />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  );
 };
 
 export default App;

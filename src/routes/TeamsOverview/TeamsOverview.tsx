@@ -3,20 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTeams } from "shared/store/slices/appSlice";
 import { RootState } from "shared/store/store";
 import * as TempoService from "shared/services/tempoService";
-import "./Teams.css";
+import "./TeamsOverview.css";
 import Card from "components/Card/Card";
 import SearchField from "components/SearchField/SearchField";
 
-const Teams = () => {
+const TeamsOverview = () => {
   const teams = useSelector((state: RootState) => state.app.teams);
   const teamsFilter = useSelector((state: RootState) => state.app.teamsFilterResult);
   const dispatch = useDispatch();
   const filterHasNoResults = teamsFilter?.length === 0;
 
   const getTeams = () => {
-    if (teamsFilter) {
-      return teamsFilter;
-    }
+    if (teamsFilter) return teamsFilter;
 
     return teams;
   };
@@ -24,9 +22,8 @@ const Teams = () => {
   useEffect(() => {
     async function fetchTeams() {
       const data = await TempoService.getTeams();
-      if (data != null) {
-        dispatch(setTeams(data));
-      }
+
+      if (data) dispatch(setTeams(data));
     }
 
     fetchTeams();
@@ -46,4 +43,4 @@ const Teams = () => {
   );
 };
 
-export default Teams;
+export default TeamsOverview;
