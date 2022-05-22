@@ -1,8 +1,8 @@
 import React from "react";
-import "./Card.css";
+import "./TeamCard.css";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ id, name }: { id: string; name: string }) => {
+const TeamCard = ({ id, name }: { id: string; name: string }) => {
   let navigate = useNavigate();
 
   const handleClick = async (id: string) => {
@@ -23,4 +23,4 @@ const Card = ({ id, name }: { id: string; name: string }) => {
   );
 };
 
-export default Card;
+export default TeamCard;

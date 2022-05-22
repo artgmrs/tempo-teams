@@ -3,12 +3,10 @@ import TeamType from "../../types/teamType";
 
 export interface AppState {
   teams: TeamType[];
-  teamsFilterResult: TeamType[] | null;
 }
 
 const initialState: AppState = {
   teams: [],
-  teamsFilterResult: null,
 };
 
 export const appSlice = createSlice({
@@ -18,12 +16,9 @@ export const appSlice = createSlice({
     setTeams: (state, action: PayloadAction<TeamType[]>) => {
       state.teams = action.payload;
     },
-    setTeamsFilterResult: (state, action: PayloadAction<TeamType[] | null>) => {
-      state.teamsFilterResult = action.payload;
-    },
   },
 });
 
-export const { setTeams, setTeamsFilterResult } = appSlice.actions;
+export const { setTeams } = appSlice.actions;
 
 export default appSlice.reducer;
