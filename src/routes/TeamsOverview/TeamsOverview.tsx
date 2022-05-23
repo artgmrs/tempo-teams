@@ -54,7 +54,7 @@ const TeamsOverview = () => {
         value={searchInput}
       />
       <div className="card-container">
-        {filterHasNoResults && <h2>Sem resultados</h2>}
+        {filterHasNoResults && <h2>No results found</h2>}
         {getTeams()?.map((team) => (
           <TeamCard key={team.id} id={team.id} name={team.name} />
         ))}

@@ -77,7 +77,7 @@ const TeamDetails = () => {
         value={searchInput}
       />
       <div>
-        {filterHasNoResults && <h2>Sem resultados</h2>}
+        {filterHasNoResults && <h2>No results found</h2>}
         {getMembers()?.map((member) => (
           <h5 key={member.id}>{member.firstName}</h5>
         ))}
