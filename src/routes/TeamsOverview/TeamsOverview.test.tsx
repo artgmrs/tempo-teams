@@ -20,7 +20,7 @@ describe("<TeamsOverview />", () => {
     );
 
     // wait until data is retrieved from mock server
-    await screen.findByText(/fourth user/i);
+    await screen.findByText(/resident scarlet hare/i);
 
     expect(screen.getAllByRole("button")).toHaveLength(4);
   });
@@ -36,9 +36,9 @@ describe("<TeamsOverview />", () => {
     );
 
     // wait until data is retrieved from mock server
-    await screen.findByText(/fourth user/i);
+    await screen.findByText(/resident scarlet hare/i);
 
-    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "First User");
+    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "Ordinary Coral Lynx");
 
     expect(screen.getAllByRole("button")).toHaveLength(1);
   });
@@ -54,9 +54,9 @@ describe("<TeamsOverview />", () => {
     );
 
     // wait until data is retrieved from mock server
-    await screen.findByText(/fourth user/i);
+    await screen.findByText(/resident scarlet hare/i);
 
-    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "Fifth User");
+    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "Fifth");
 
     expect(screen.queryByRole("button")).toBeNull();
   });

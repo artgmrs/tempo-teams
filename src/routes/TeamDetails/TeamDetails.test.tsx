@@ -1,18 +1,25 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import TeamDetails from "./TeamDetails";
 
 describe("<TeamDetails />", () => {
-  it("should be in the doc", () => {
-    const history = createMemoryHistory();
+  it("should show the team details", async () => {
     render(
-      <Router location={history.location} navigator={history}>
-        <TeamDetails />
-      </Router>,
+      <MemoryRouter initialEntries={["/teams/1"]}>
+        <Routes>
+          <Route path="/teams/:id" element={<TeamDetails />} />
+        </Routes>
+      </MemoryRouter>,
     );
-    // eslint-disable-next-line testing-library/no-debugging-utils
-    screen.debug();
+
+    // wait until data is retrieved from mock server
+    await screen.findByText(/ordinary coral lynx/i);
+    await screen.findByText(/travon/i);
+
+    expect(screen.getByText("Gianni")).toBeInTheDocument();
+    expect(screen.getByText("Jaren")).toBeInTheDocument();
+    expect(screen.getByText("Marion")).toBeInTheDocument();
+    expect(screen.getByText("Leader: Travon")).toBeInTheDocument();
   });
 });

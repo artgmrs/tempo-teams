@@ -16,11 +16,11 @@ const TeamDetails = () => {
   const filterHasNoResults = membersFilter?.length === 0;
 
   useEffect(() => {
-    async function fetchMemberIds() {
+    async function fetchTeamMemberIds() {
       if (id) setTeam(await TempoService.getTeam(id));
     }
 
-    fetchMemberIds();
+    fetchTeamMemberIds();
   }, []);
 
   useEffect(() => {
@@ -65,12 +65,10 @@ const TeamDetails = () => {
 
   return (
     <div>
-      <button onClick={() => navigate("/")}>Voltar</button>
-      <h1>Nome time: {team?.name} </h1>
-      <h2>
-        Nome líder: {leader?.firstName} {leader?.lastName}
-      </h2>
-      <h4>Nome membros:</h4>
+      <button onClick={() => navigate("/")}>Back</button>
+      <h1>Team: {team?.name} </h1>
+      <h2>Leader: {leader?.firstName}</h2>
+      <h4>Members:</h4>
       <SearchField
         handleChange={handleSearchFieldChange}
         placeholder="Search member here..."
