@@ -17,9 +17,7 @@ const TeamDetails = () => {
 
   useEffect(() => {
     async function fetchMemberIds() {
-      if (id) {
-        setTeam(await TempoService.getTeam(id));
-      }
+      if (id) setTeam(await TempoService.getTeam(id));
     }
 
     fetchMemberIds();
