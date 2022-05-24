@@ -74,7 +74,7 @@ const TeamDetails = () => {
       <h4>Members:</h4>
       <SearchField
         handleChange={handleSearchFieldChange}
-        placeholder="Search member here..."
+        label="Search member here..."
         value={searchInput}
       />
       <div>

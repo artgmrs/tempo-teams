@@ -1,5 +1,5 @@
+import { Button } from "@mui/material";
 import React from "react";
-import "./TeamCard.css";
 
 interface TeamCardProps {
   id: string;
@@ -9,15 +9,21 @@ interface TeamCardProps {
 
 const TeamCard: React.FC<TeamCardProps> = ({ id, name, handleTeamCardClick }) => {
   return (
-    <div className="card">
-      <button
-        type="button"
+    <div>
+      <Button
+        variant="contained"
+        sx={{
+          width: "120px",
+          height: "120px",
+          borderRadius: "4px",
+        }}
         onClick={() => {
           handleTeamCardClick(id);
         }}
+        color="primary"
       >
-        {name}
-      </button>
+        <span>{name}</span>
+      </Button>
     </div>
   );
 };

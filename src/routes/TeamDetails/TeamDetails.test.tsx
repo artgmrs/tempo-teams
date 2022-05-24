@@ -36,7 +36,7 @@ describe("<TeamDetails />", () => {
     await screen.findByText(/ordinary coral lynx/i);
     await screen.findByText(/travon/i);
 
-    userEvent.type(screen.getByPlaceholderText(/search member here.../i), "Gianni");
+    userEvent.type(screen.getByLabelText(/search member here.../i), "Gianni");
 
     expect(screen.getAllByText(/location/i)).toHaveLength(1);
   });

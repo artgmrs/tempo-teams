@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTeams } from "shared/store/slices/appSlice";
 import { RootState } from "shared/store/store";
 import * as TempoService from "shared/services/tempoService";
-import "./TeamsOverview.css";
 import SearchField from "components/SearchField/SearchField";
 import TeamType from "shared/types/teamType";
 import TeamCard from "components/TeamCard/TeamCard";
 import { useNavigate } from "react-router-dom";
+import { Box, Skeleton } from "@mui/material";
 
 const TeamsOverview = () => {
   const dispatch = useDispatch();
@@ -56,20 +56,29 @@ const TeamsOverview = () => {
     <>
       <SearchField
         handleChange={handleSearchFieldChange}
-        placeholder="Search team here..."
+        label="Search team here..."
         value={searchInput}
+        disabled={teams.length <= 0}
       />
-      <div className="card-container">
-        {filterHasNoResults && <h2>No results found</h2>}
-        {getTeams()?.map((team) => (
-          <TeamCard
-            key={team.id}
-            id={team.id}
-            name={team.name}
-            handleTeamCardClick={handleTeamCardClick}
-          />
-        ))}
-      </div>
+      {teams.length > 0 ? (
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
+          {filterHasNoResults && <h2>No results found</h2>}
+          {getTeams()?.map((team) => (
+            <TeamCard
+              key={team.id}
+              id={team.id}
+              name={team.name}
+              handleTeamCardClick={handleTeamCardClick}
+            />
+          ))}
+        </Box>
+      ) : (
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
+          {[...Array(30)].map((elem, index) => (
+            <Skeleton variant="rectangular" width={120} height={120} />
+          ))}
+        </Box>
+      )}
     </>
   );
 };

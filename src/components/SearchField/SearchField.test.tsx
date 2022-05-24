@@ -11,11 +11,11 @@ describe("<SearchField />", () => {
 
     render(
       <Router location={history.location} navigator={history}>
-        <SearchField handleChange={mockFunction} placeholder="placeholder text" value="Test" />,
+        <SearchField handleChange={mockFunction} label="placeholder text" value="Test" />,
       </Router>,
     );
 
-    userEvent.type(screen.getByPlaceholderText(/placeholder text/i), "1234");
+    userEvent.type(screen.getByText(/placeholder text/i), "1234");
 
     expect(mockFunction).toBeCalledTimes(4);
   });

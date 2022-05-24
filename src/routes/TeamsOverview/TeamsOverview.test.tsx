@@ -38,7 +38,7 @@ describe("<TeamsOverview />", () => {
     // wait until data is retrieved from mock server
     await screen.findByText(/resident scarlet hare/i);
 
-    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "Ordinary Coral Lynx");
+    userEvent.type(screen.getByLabelText(/search team here.../i), "Ordinary Coral Lynx");
 
     expect(screen.getAllByRole("button")).toHaveLength(1);
   });
@@ -56,7 +56,7 @@ describe("<TeamsOverview />", () => {
     // wait until data is retrieved from mock server
     await screen.findByText(/resident scarlet hare/i);
 
-    userEvent.type(screen.getByPlaceholderText(/search team here.../i), "Fifth");
+    userEvent.type(screen.getByLabelText(/search team here.../i), "Fifth");
 
     expect(screen.queryByRole("button")).toBeNull();
   });
