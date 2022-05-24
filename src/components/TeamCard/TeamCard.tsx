@@ -1,20 +1,19 @@
 import React from "react";
 import "./TeamCard.css";
-import { useNavigate } from "react-router-dom";
 
-const TeamCard = ({ id, name }: { id: string; name: string }) => {
-  let navigate = useNavigate();
+interface TeamCardProps {
+  id: string;
+  name: string;
+  handleTeamCardClick: (id: string) => void;
+}
 
-  const handleClick = async (id: string) => {
-    navigate(`/teams/${id}`);
-  };
-
+const TeamCard: React.FC<TeamCardProps> = ({ id, name, handleTeamCardClick }) => {
   return (
     <div className="card">
       <button
         type="button"
         onClick={() => {
-          handleClick(id);
+          handleTeamCardClick(id);
         }}
       >
         {name}

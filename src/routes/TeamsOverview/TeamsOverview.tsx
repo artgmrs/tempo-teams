@@ -7,11 +7,13 @@ import "./TeamsOverview.css";
 import SearchField from "components/SearchField/SearchField";
 import TeamType from "shared/types/teamType";
 import TeamCard from "components/TeamCard/TeamCard";
+import { useNavigate } from "react-router-dom";
 
 const TeamsOverview = () => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
   const teams = useSelector((state: RootState) => state.app.teams);
   const [teamsFilter, setTeamsFilter] = useState<TeamType[] | null>();
-  const dispatch = useDispatch();
   const filterHasNoResults = teamsFilter?.length === 0;
   const [searchInput, setSearchInput] = useState("");
 
@@ -46,6 +48,10 @@ const TeamsOverview = () => {
     }
   };
 
+  const handleTeamCardClick = async (id: string) => {
+    navigate(`/teams/${id}`);
+  };
+
   return (
     <>
       <SearchField
@@ -56,7 +62,12 @@ const TeamsOverview = () => {
       <div className="card-container">
         {filterHasNoResults && <h2>No results found</h2>}
         {getTeams()?.map((team) => (
-          <TeamCard key={team.id} id={team.id} name={team.name} />
+          <TeamCard
+            key={team.id}
+            id={team.id}
+            name={team.name}
+            handleTeamCardClick={handleTeamCardClick}
+          />
         ))}
       </div>
     </>

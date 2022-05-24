@@ -4,6 +4,7 @@ import TeamMemberType from "shared/types/teamMemberType";
 import { useNavigate, useParams } from "react-router-dom";
 import TeamType from "shared/types/teamType";
 import SearchField from "components/SearchField/SearchField";
+import MemberCard from "components/MemberCard/MemberCard";
 
 const TeamDetails = () => {
   let { id } = useParams();
@@ -67,7 +68,9 @@ const TeamDetails = () => {
     <div>
       <button onClick={() => navigate("/")}>Back</button>
       <h1>Team: {team?.name} </h1>
-      <h2>Leader: {leader?.firstName}</h2>
+      <h2>
+        Leader: {leader?.firstName} {leader?.lastName}
+      </h2>
       <h4>Members:</h4>
       <SearchField
         handleChange={handleSearchFieldChange}
@@ -77,7 +80,7 @@ const TeamDetails = () => {
       <div>
         {filterHasNoResults && <h2>No results found</h2>}
         {getMembers()?.map((member) => (
-          <h5 key={member.id}>{member.firstName}</h5>
+          <MemberCard key={member.id} member={member} />
         ))}
       </div>
     </div>
