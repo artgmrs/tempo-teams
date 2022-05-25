@@ -38,6 +38,6 @@ describe("<TeamDetails />", () => {
 
     userEvent.type(screen.getByLabelText(/search member here.../i), "Gianni");
 
-    expect(screen.getAllByText(/location/i)).toHaveLength(1);
+    expect(screen.getAllByText(/gianni/i)).toHaveLength(1);
   });
 });

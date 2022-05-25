@@ -1,13 +1,13 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-interface TeamCardProps {
+interface CardProps {
   id: string;
   name: string;
-  handleTeamCardClick: (id: string) => void;
+  handleCardClick?: (id: string) => void;
 }
 
-const TeamCard: React.FC<TeamCardProps> = ({ id, name, handleTeamCardClick }) => {
+const Card: React.FC<CardProps> = ({ id, name, handleCardClick }) => {
   return (
     <div>
       <Button
@@ -18,7 +18,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ id, name, handleTeamCardClick }) =>
           borderRadius: "4px",
         }}
         onClick={() => {
-          handleTeamCardClick(id);
+          handleCardClick && handleCardClick(id);
         }}
         color="primary"
       >
@@ -28,4 +28,4 @@ const TeamCard: React.FC<TeamCardProps> = ({ id, name, handleTeamCardClick }) =>
   );
 };
 
-export default TeamCard;
+export default Card;

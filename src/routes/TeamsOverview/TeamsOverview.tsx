@@ -5,9 +5,9 @@ import { RootState } from "shared/store/store";
 import * as TempoService from "shared/services/tempoService";
 import SearchField from "components/SearchField/SearchField";
 import TeamType from "shared/types/teamType";
-import TeamCard from "components/TeamCard/TeamCard";
 import { useNavigate } from "react-router-dom";
 import { Box, Skeleton } from "@mui/material";
+import GenericCard from "components/GenericCard/GenericCard";
 
 const TeamsOverview = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const TeamsOverview = () => {
     }
   };
 
-  const handleTeamCardClick = async (id: string) => {
+  const handleCardClick = async (id: string) => {
     navigate(`/teams/${id}`);
   };
 
@@ -60,25 +60,26 @@ const TeamsOverview = () => {
         value={searchInput}
         disabled={teams.length <= 0}
       />
-      {teams.length > 0 ? (
+
+      {teams.length === 0 && (
         <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
-          {filterHasNoResults && <h2>No results found</h2>}
-          {getTeams()?.map((team) => (
-            <TeamCard
-              key={team.id}
-              id={team.id}
-              name={team.name}
-              handleTeamCardClick={handleTeamCardClick}
-            />
-          ))}
-        </Box>
-      ) : (
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
-          {[...Array(30)].map((elem, index) => (
-            <Skeleton variant="rectangular" width={120} height={120} />
+          {[...Array(30)].map((n, index) => (
+            <Skeleton key={index} variant="rectangular" width={120} height={120} />
           ))}
         </Box>
       )}
+
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
+        {filterHasNoResults && <span>No results found</span>}
+        {getTeams()?.map((team) => (
+          <GenericCard
+            key={team.id}
+            id={team.id}
+            name={team.name}
+            handleCardClick={handleCardClick}
+          />
+        ))}
+      </Box>
     </>
   );
 };

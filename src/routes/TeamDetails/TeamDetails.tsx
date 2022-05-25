@@ -4,7 +4,9 @@ import TeamMemberType from "shared/types/teamMemberType";
 import { useNavigate, useParams } from "react-router-dom";
 import TeamType from "shared/types/teamType";
 import SearchField from "components/SearchField/SearchField";
-import MemberCard from "components/MemberCard/MemberCard";
+import { Button, Skeleton } from "@mui/material";
+import { Box } from "@mui/system";
+import GenericCard from "components/GenericCard/GenericCard";
 
 const TeamDetails = () => {
   let { id } = useParams();
@@ -66,23 +68,56 @@ const TeamDetails = () => {
 
   return (
     <div>
-      <button onClick={() => navigate("/")}>Back</button>
-      <h1>Team: {team?.name} </h1>
-      <h2>
-        Leader: {leader?.firstName} {leader?.lastName}
-      </h2>
-      <h4>Members:</h4>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: "15px",
+        }}
+      >
+        <Button onClick={() => navigate("/")} variant="contained">
+          Back
+        </Button>
+
+        {team?.name ? <h1>Team: {team?.name} </h1> : <Skeleton variant="text" />}
+
+        {leader?.firstName ? (
+          <h2>
+            Leader: {leader?.firstName} {leader?.lastName}
+          </h2>
+        ) : (
+          <Skeleton variant="text" />
+        )}
+      </Box>
       <SearchField
         handleChange={handleSearchFieldChange}
         label="Search member here..."
         value={searchInput}
+        disabled={members.length <= 0}
       />
-      <div>
+      <Box sx={{ display: "flex", justifyContent: "center", margin: "15px" }}>
+        <h2>Members</h2>
+      </Box>
+      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
         {filterHasNoResults && <h2>No results found</h2>}
+
+        {members.length === 0 && (
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
+            {[...Array(7)].map((n, index) => (
+              <Skeleton key={index} variant="rectangular" width={120} height={120} />
+            ))}
+          </Box>
+        )}
+
         {getMembers()?.map((member) => (
-          <MemberCard key={member.id} member={member} />
+          <GenericCard
+            key={member.id}
+            id={member.id}
+            name={`${member.firstName} ${member.lastName}`}
+          />
         ))}
-      </div>
+      </Box>
     </div>
   );
 };
