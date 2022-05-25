@@ -19,11 +19,11 @@ const TeamDetails = () => {
   const filterHasNoResults = membersFilter?.length === 0;
 
   useEffect(() => {
-    async function fetchTeamMemberIds() {
+    async function fetchTeamMembersIds() {
       if (id) setTeam(await TempoService.getTeam(id));
     }
 
-    fetchTeamMemberIds();
+    fetchTeamMembersIds();
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const TeamDetails = () => {
   };
 
   return (
-    <div>
+    <>
       <Box
         sx={{
           display: "flex",
@@ -76,11 +76,9 @@ const TeamDetails = () => {
           marginTop: "15px",
         }}
       >
-        <Button onClick={() => navigate("/")} variant="contained">
+        <Button onClick={() => navigate("/")} variant="contained" color="success">
           Back
         </Button>
-
-        {team?.name ? <h1>Team: {team?.name} </h1> : <Skeleton variant="text" />}
 
         {leader?.firstName ? (
           <h2>
@@ -90,6 +88,15 @@ const TeamDetails = () => {
           <Skeleton variant="text" />
         )}
       </Box>
+
+      {team?.name ? (
+        <Box component="h1" sx={{ display: "flex", justifyContent: "center" }}>
+          Team: {team?.name}{" "}
+        </Box>
+      ) : (
+        <Skeleton variant="text" />
+      )}
+
       <SearchField
         handleChange={handleSearchFieldChange}
         label="Search member here..."
@@ -97,7 +104,7 @@ const TeamDetails = () => {
         disabled={members.length <= 0}
       />
       <Box sx={{ display: "flex", justifyContent: "center", margin: "15px" }}>
-        <h2>Members</h2>
+        <Box component="h2">Members:</Box>
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
         {filterHasNoResults && <h2>No results found</h2>}
@@ -118,7 +125,7 @@ const TeamDetails = () => {
           />
         ))}
       </Box>
-    </div>
+    </>
   );
 };
 

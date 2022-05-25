@@ -10,12 +10,12 @@ import { Box, Skeleton } from "@mui/material";
 import GenericCard from "components/GenericCard/GenericCard";
 
 const TeamsOverview = () => {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const teams = useSelector((state: RootState) => state.app.teams);
   const [teamsFilter, setTeamsFilter] = useState<TeamType[] | null>();
-  const filterHasNoResults = teamsFilter?.length === 0;
   const [searchInput, setSearchInput] = useState("");
+  const filterHasNoResults = teamsFilter?.length === 0;
 
   useEffect(() => {
     async function fetchTeams() {
@@ -70,7 +70,7 @@ const TeamsOverview = () => {
       )}
 
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: "50px", justifyContent: "center" }}>
-        {filterHasNoResults && <span>No results found</span>}
+        {filterHasNoResults && <Box component="span">No results found</Box>}
         {getTeams()?.map((team) => (
           <GenericCard
             key={team.id}
