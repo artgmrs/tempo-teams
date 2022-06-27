@@ -2,6 +2,8 @@
 
 The application `tempo teams` fetchs a list of teams from an API and show an overview of them. It's possible to navigate between teams to check more details. In the team's details page, the app fetchs the team details and a list of users.
 
+Visit project: [https://tempo-teams.vercel.app/](https://tempo-teams.vercel.app/)
+
 This project was built using mainly: React, React Router, Axios, Redux, Jest & RTL and Material UI.
 
 # My approach
